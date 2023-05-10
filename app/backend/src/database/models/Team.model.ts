@@ -2,6 +2,11 @@ import { DataTypes, Model } from 'sequelize';
 import db from '.';
 // import OtherModel from './OtherModel';
 
+export type teamObject = {
+  id:number;
+  teamName: string;
+};
+
 class Team extends Model {
   declare id: number;
   declare teamName: string;
