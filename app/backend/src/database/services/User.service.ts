@@ -3,6 +3,7 @@ import User, { userObj } from '../models/User.model';
 import ErrorTratative from '../Errors/Errors';
 import createTokenJWT from '../Utils/auth';
 import validaEmailAndPassword from './validations/validationsLogin';
+import { authenticateToken } from '../Utils/auth';
 
 class UserService {
   public static async findAll(): Promise<userObj[]> {
@@ -34,6 +35,11 @@ class UserService {
     }
     const token = createTokenJWT({ id, role, username, email: emailReq });
     return token;
+  }
+
+  public static async findRole(token:string): Promise<> {
+    const decoded = authenticateToken(token);
+    return { role: decoded.role };
   }
 }
 

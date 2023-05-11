@@ -7,4 +7,10 @@ export default class UserController {
     const fetchLogin = await UserService.Login(email, password);
     res.status(200).json({ token: fetchLogin });
   }
+
+  public static async getRole(req: Request, res: Response) {
+    const token = req.header('Authorization');
+    const role = await UserService.findRole(token as string);
+    res.status(200).json(role);
+  }
 }
