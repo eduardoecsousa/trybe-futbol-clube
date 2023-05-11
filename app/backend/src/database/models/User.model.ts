@@ -2,6 +2,14 @@ import { DataTypes, Model } from 'sequelize';
 import db from '.';
 // import OtherModel from './OtherModel';
 
+export type userObj = {
+  id: number;
+  username: string;
+  role: string;
+  email: string;
+  password: string;
+};
+
 class User extends Model {
   declare id: number;
   declare username: string;

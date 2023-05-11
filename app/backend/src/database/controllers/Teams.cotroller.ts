@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import TeamsService from '../services/Teams.servise';
+import TeamsService from '../services/Teams.service';
 
 class TeamController {
   public static async getAll(_req:Request, res: Response) {
