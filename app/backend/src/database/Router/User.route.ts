@@ -11,7 +11,7 @@ routerUser.post('/', loginValidateInputs, UserController.makeLogin);
 routerUser.use((err: ErrorTratative, _req: Request, res: Response, next: NextFunction) => {
   const { name, message, code } = err;
   switch (name) {
-    case 'BAD_REQUEST':
+    case 'UNAUTHORIZED':
       res.status(code).json({ message });
       break;
     default:

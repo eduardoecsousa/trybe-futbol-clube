@@ -9,7 +9,7 @@ interface JWTPayload {
 }
 // A função create TokenJWT recebe como parâmetro o nosso payload e retorna um token ao usuário.
 
-const secret = process.env.JWT_SECRET as string;
+const secret = String(process.env.JWT_SECRET);
 
 export default function createTokenJWT(payload: JWTPayload) {
   const config: SignOptions = {
