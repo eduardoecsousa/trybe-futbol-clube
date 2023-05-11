@@ -1,9 +1,12 @@
 import { compareSync } from 'bcryptjs';
 import User, { userObj } from '../models/User.model';
 import ErrorTratative from '../Errors/Errors';
-import createTokenJWT from '../Utils/auth';
+import createTokenJWT, { authenticateToken } from '../Utils/auth';
 import validaEmailAndPassword from './validations/validationsLogin';
-import { authenticateToken } from '../Utils/auth';
+
+type role = {
+  role: string
+};
 
 class UserService {
   public static async findAll(): Promise<userObj[]> {
@@ -37,7 +40,7 @@ class UserService {
     return token;
   }
 
-  public static async findRole(token:string): Promise<> {
+  public static async findRole(token:string): Promise<role> {
     const decoded = authenticateToken(token);
     return { role: decoded.role };
   }
