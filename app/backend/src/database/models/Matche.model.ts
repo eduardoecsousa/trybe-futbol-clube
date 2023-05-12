@@ -2,6 +2,17 @@ import { DataTypes, Model } from 'sequelize';
 import db from '.';
 import Team from './Team.model';
 
+export type MatchObj = {
+  id: number;
+  homeTeamId: number;
+  homeTeamGoals: number;
+  awayTeamId: number;
+  awayTeamGoals: number;
+  inProgress: boolean;
+  homeTeam: { nameTeam: string };
+  awayTeam: { nameTeam: string };
+};
+
 class Matche extends Model {
   declare id: number;
   declare homeTeamId: number;
@@ -55,8 +66,8 @@ Matche.init({
   * Associations 1:N devem ficar em uma das instâncias de modelo
   * */
 
-Team.belongsTo(Matche, { foreignKey: 'homeTeamId', as: 'idTeam' });
-Team.belongsTo(Matche, { foreignKey: 'awayTeamId', as: 'idTeam' });
+Matche.belongsTo(Team, { foreignKey: 'home_team_id', as: 'homeTeam' });
+Matche.belongsTo(Team, { foreignKey: 'away_team_id', as: 'awayTeam' });
 
 // OtherModel.belongsTo(Example, { foreignKey: 'campoB', as: 'campoEstrangeiroB' });
 
