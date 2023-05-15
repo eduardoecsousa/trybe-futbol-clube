@@ -6,7 +6,7 @@ import MatchesController from '../controllers/Matches.controller';
 
 const routerMatches = Router();
 
-routerMatches.get('/', MatchesController.getAll);
+routerMatches.get('/', MatchesController.getAllInProgress);
 
 routerMatches.use((err: ErrorTratative, _req: Request, res: Response, next: NextFunction) => {
   const { name, message, code } = err;
