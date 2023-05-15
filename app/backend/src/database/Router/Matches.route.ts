@@ -10,6 +10,8 @@ routerMatches.get('/', MatchesController.getAllInProgress);
 
 routerMatches.patch('/:id/finish', verificToken, MatchesController.updateMatches);
 
+routerMatches.patch('/:id', verificToken, MatchesController.updateGols);
+
 routerMatches.use((err: ErrorTratative, _req: Request, res: Response, next: NextFunction) => {
   const { name, message, code } = err;
   switch (name) {

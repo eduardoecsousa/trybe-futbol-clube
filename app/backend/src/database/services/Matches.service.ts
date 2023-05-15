@@ -34,4 +34,15 @@ export default class MatchesService {
     }
     return null;
   }
+
+  public static async updateGols(id: number, homeTeamGoals: number, awayTeamGoals: number) {
+    const update = await Matche.update(
+      { homeTeamGoals, awayTeamGoals },
+      { where: { id } },
+    );
+    if (!update) {
+      throw new ErrorTratative('erro', 'UNAUTHORIZED', 401);
+    }
+    return null;
+  }
 }
