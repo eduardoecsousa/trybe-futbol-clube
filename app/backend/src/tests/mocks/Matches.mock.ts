@@ -91,9 +91,51 @@ const MockReturnFindMatchestrue = [
   }
 ]
 
+const objPatchMatchesGols = {
+  homeTeamGoals: 3,
+  awayTeamGoals: 1
+}
+
+
+const objPostMatches = {
+  homeTeamId: 16,
+  homeTeamGoals: 1,
+  awayTeamId: 8,
+  awayTeamGoals: 1,
+}
+
+
+const objPostMatchesTeamEqual = {
+  homeTeamId: 16,
+  homeTeamGoals: 1,
+  awayTeamId: 16,
+  awayTeamGoals: 1,
+}
+
+const objPostMatchesNoExist = {
+  homeTeamId: 160,
+  homeTeamGoals: 1,
+  awayTeamId: 8,
+  awayTeamGoals: 1,
+}
+
+const mockSuccessCreate = {
+  id: 1,
+  homeTeamId: 16,
+  homeTeamGoals: 1,
+  awayTeamId: 8,
+  awayTeamGoals: 1,
+  inProgress: true,
+}
+
 
 export {
   MockReturnFindMatches,
   MockReturnFindMatchestrue,
   MockReturnFindMatchesFalse,
+  objPatchMatchesGols,
+  objPostMatches,
+  objPostMatchesTeamEqual,
+  objPostMatchesNoExist,
+  mockSuccessCreate,
 };
