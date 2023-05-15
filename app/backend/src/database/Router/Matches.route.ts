@@ -16,12 +16,10 @@ routerMatches.post('/', verificToken, MatchesController.createMatche);
 
 routerMatches.use((err: ErrorTratative, _req: Request, res: Response, next: NextFunction) => {
   const { name, message, code } = err;
-  switch (name) {
-    case 'UNAUTHORIZED':
-      res.status(code).json({ message });
-      break;
-    default:
-      res.sendStatus(500).json(err);
+  if (name) {
+    res.status(code).json({ message });
+  } else {
+    res.sendStatus(500).json(err);
   }
   next();
 });

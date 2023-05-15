@@ -1,6 +1,7 @@
 import ErrorTratative from '../Errors/Errors';
 import Matche, { MatchObjNoId } from '../models/Matche.model';
 import Team from '../models/Team.model';
+import checkCreate from './validations/ValidationsMatches';
 
 export default class MatchesService {
   public static async findAll() {
@@ -47,6 +48,8 @@ export default class MatchesService {
   }
 
   public static async createMatches(payload: MatchObjNoId) {
+    const { awayTeamId, homeTeamId } = payload;
+    await checkCreate(homeTeamId, awayTeamId);
     const create = await Matche.create(
       { ...payload, inProgress: true },
     );
