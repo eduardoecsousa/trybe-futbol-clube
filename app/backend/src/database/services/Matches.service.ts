@@ -1,3 +1,4 @@
+import ErrorTratative from '../Errors/Errors';
 import Matche from '../models/Matche.model';
 import Team from '../models/Team.model';
 
@@ -21,5 +22,16 @@ export default class MatchesService {
       ],
     });
     return matches;
+  }
+
+  public static async updateMatches(id: number) {
+    const update = await Matche.update(
+      { inProgress: false },
+      { where: { id } },
+    );
+    if (!update) {
+      throw new ErrorTratative('erro', 'UNAUTHORIZED', 401);
+    }
+    return null;
   }
 }
