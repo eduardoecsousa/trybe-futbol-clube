@@ -13,6 +13,13 @@ export type MatchObj = {
   awayTeam: { nameTeam: string };
 };
 
+export type MatchObjNoId = {
+  homeTeamId: number;
+  homeTeamGoals: number;
+  awayTeamId: number;
+  awayTeamGoals: number;
+};
+
 class Matche extends Model {
   declare id: number;
   declare homeTeamId: number;

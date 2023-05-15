@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import MatchesService from '../services/Matches.service';
+import { MatchObjNoId } from '../models/Matche.model';
 
 export default class MatchesController {
   public static async getAllInProgress(req:Request, res:Response) {
@@ -25,5 +26,11 @@ export default class MatchesController {
     const { homeTeamGoals, awayTeamGoals } = req.body;
     MatchesService.updateGols(+id, +homeTeamGoals, +awayTeamGoals);
     res.status(200).json({ message: 'Success' });
+  }
+
+  public static async createMatche(req:Request, res:Response) {
+    const newMatche = req.body;
+    const matcheSuccess = await MatchesService.createMatches(newMatche as MatchObjNoId);
+    res.status(201).json(matcheSuccess);
   }
 }

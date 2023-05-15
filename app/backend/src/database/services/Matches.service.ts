@@ -1,5 +1,5 @@
 import ErrorTratative from '../Errors/Errors';
-import Matche from '../models/Matche.model';
+import Matche, { MatchObjNoId } from '../models/Matche.model';
 import Team from '../models/Team.model';
 
 export default class MatchesService {
@@ -44,5 +44,12 @@ export default class MatchesService {
       throw new ErrorTratative('erro', 'UNAUTHORIZED', 401);
     }
     return null;
+  }
+
+  public static async createMatches(payload: MatchObjNoId) {
+    const create = await Matche.create(
+      { ...payload, inProgress: true },
+    );
+    return create;
   }
 }
