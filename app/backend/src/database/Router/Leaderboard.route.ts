@@ -6,6 +6,7 @@ import LeaderboardController from '../controllers/Leaderboard.controller';
 const routerLeaderboard = Router();
 
 routerLeaderboard.get('/home', LeaderboardController.getAllLeaderboardsHome);
+routerLeaderboard.get('/away', LeaderboardController.getAllLeaderboardsAway);
 
 routerLeaderboard.use((err: ErrorTratative, _req: Request, res: Response, next: NextFunction) => {
   const { name, message, code } = err;
