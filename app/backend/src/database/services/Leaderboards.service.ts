@@ -27,10 +27,7 @@ const array: sequelize.FindAttributeOptions = [
   ],
   [sequelize.fn('SUM', sequelize.col('home_team_goals')), 'goalsFavor'],
   [sequelize.fn('SUM', sequelize.col('away_team_goals')), 'goalsOwn'],
-  [sequelize.literal(`IF(
-    SUM(home_team_goals) - SUM(away_team_goals) < 0,
-    0,
-    SUM(home_team_goals) - SUM(away_team_goals) )`), 'goalsBalance'],
+  [sequelize.literal(' SUM(home_team_goals) - SUM(away_team_goals)'), 'goalsBalance'],
   [sequelize.literal(`ROUND( SUM( CASE
     WHEN home_team_goals > away_team_goals THEN 3
     WHEN home_team_goals = away_team_goals THEN 1
@@ -47,6 +44,12 @@ export default class LeaderboardsService {
       ],
       attributes: array,
       group: 'home_team_id',
+      order: [
+        ['totalPoints', 'DESC'],
+        ['totalVictories', 'DESC'],
+        ['goalsBalance', 'DESC'],
+        ['goalsFavor', 'DESC'],
+      ],
     });
     return matches;
   }
