@@ -7,6 +7,7 @@ const routerLeaderboard = Router();
 
 routerLeaderboard.get('/home', LeaderboardController.getAllLeaderboardsHome);
 routerLeaderboard.get('/away', LeaderboardController.getAllLeaderboardsAway);
+routerLeaderboard.get('/', LeaderboardController.getAllLeaderboardsAll);
 
 routerLeaderboard.use((err: ErrorTratative, _req: Request, res: Response, next: NextFunction) => {
   const { name, message, code } = err;
